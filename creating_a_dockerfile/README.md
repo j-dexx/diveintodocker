@@ -1,3 +1,8 @@
+`docker container run -it --rm --name testingelixir elixir:1.5-alpine iex`
+
+Will just pull down the elixir:1.5-alpine linux image from docker hub and drop
+into an IEX prompt
+
 `docker container run -it --name web1_3 -p 5000:5000 -e FLASK_APP=app.py -d --restart on-failure web1`
 
 --restart flag telling docker to restart on failure
