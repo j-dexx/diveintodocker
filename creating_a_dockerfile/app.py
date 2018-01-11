@@ -5,4 +5,4 @@ app = Flask(__name__)
 
 @app.route('/')
 def counter():
-    return '444'
+    return '777'

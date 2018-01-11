@@ -17,3 +17,19 @@
 folder in docker - using /app as that is the directory we use in the dockerfile.
 This allows docker to do live code reloading in development but for production
 we'd need to rebuild the image once done.
+
+`docker exec -it web1 /bin/sh`
+
+Where web1 is the container name.  This will give you a /bin/sh session inside
+the container.
+
+Can do things like `docker exec it web1 flask --version` which will output the
+flask version
+
+All files/folders will be created as root by docker by default - in mounted
+volumes this will create them as root on the host system.
+
+`docker container exec -it --user "$(id -u):$(id -g)" web1 touch hi.txt`
+
+The --user flag expects user:group and id -u and id -g will provide this for the
+current user being used
