@@ -28,3 +28,22 @@ we start both on the network called firstnetwork
 
 The bridge driver can only connect containers on one host, if you wish to
 connect containers on multiple hosts you'd need to use the overlay driver
+
+
+`docker volume create web2_redis` creates a named volume called web2_redis.
+
+`docker volume ls`
+
+`docker volume inspect web2_redis` inspect the named volume - the mountpoint
+output is where the data is saved on the host
+
+`docker container run --rm -itd -p 6379:6379 --name redis --net firstnetwork -v web2_redis:/data redis:3.2-alpine`
+Using the named volume; /data because that is where the redis docker directory
+expects the data to be located for restoring on reinitialising a container.
+
+[Docker Hub](https://hub.docker.com/_/redis/)
+> If persistence is enabled, data is stored in the VOLUME /data, which can be used with --volumes-from some-volume-container or -v /docker/host/dir:/data
+
+Save the data in redis
+`docker exec redis redis-cli SAVE`
+
